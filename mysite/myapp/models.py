@@ -4,6 +4,8 @@ from django.db import models
 class Student(models.Model):
     sname=models.CharField(max_length=100)
     rollno=models.IntegerField(default=0)
+    join_date=models.DateTimeField("Joining Date")
+    #exam_no=models.IntegerField()
     def __unicode__(self):
         return self.sname
 class Contact(models.Model):

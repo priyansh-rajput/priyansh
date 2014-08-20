@@ -7,13 +7,13 @@ class ContactInline(admin.TabularInline):
 class StudentAdmin(admin.ModelAdmin):
     #fields=['rollno','sname']
     fieldsets = [
-        (None,{'fields':['sname']}),
+        (None,{'fields':['sname','join_date']}),
         ('Student ROLL NO...',{
             'fields':['rollno'],
             'classes':['collapse'],
         }),
     ]
-    list_display = ('sname','rollno')
+    list_display = ('sname','rollno','join_date')
     list_filter = ('rollno','id')
     list_per_page = 3
 
