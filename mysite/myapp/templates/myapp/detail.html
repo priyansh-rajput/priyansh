@@ -5,12 +5,13 @@
     <title></title>
 </head>
 <body>
+    {# display Student Conatc Info #}
     <h1>{{ stud.sname|capfirst }}</h1>
     <ul>
         {% for contact in stud.contact_set.all %}
-            <li>{{ contact.address }}</li>
+            <li>{{ contact.address }}&nbsp;&nbsp;&nbsp;{{ contact.stdno }}</li>
         {% endfor %}
     </ul>
-    <a href="/myapp/">Back</a>
+    <a href="{% url 'myapp:index' %}">Back</a>
 </body>
 </html>

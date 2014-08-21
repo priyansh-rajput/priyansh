@@ -19,6 +19,6 @@ class StudentAdmin(admin.ModelAdmin):
 
     inlines = [ContactInline]
 # Register your models here.
-admin.site.register(Student,StudentAdmin)#display Rollno First in Admin site.StudentAdmin id admon model class it's Second argumant of register()
+admin.site.register(Student,StudentAdmin)#display Rollno First in Admin site.StudentAdmin id admin model class it's Second argumant of register()
 #admin.site.register(Contact)
 #admin.site.register(Student)

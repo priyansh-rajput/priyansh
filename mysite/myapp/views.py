@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse
+from django.http import HttpResponse,HttpResponseRedirect
 from myapp.models import Student,Contact
+from django.core.urlresolvers import reverse
 from django.template import RequestContext,loader
 # Create your views here.
 def index(request):
@@ -18,10 +19,36 @@ def detail(request,student_id):
     #except stud.DoesNotExist:
      #   raise Http404
     stud=get_object_or_404(Student,pk=student_id)#Shortcut Method for above comment code and it raises Http404 if the list is empty.
-    return render(request,'myapp/detail.html',{'stud':stud})#return HttpResponse
+    return render(request,'myapp/detailForm.html',{'stud':stud})#return HttpResponse
 
-    return HttpResponse("YoU Are Looking in Student:%s"%student_id)
 def result(request,student_id):
-    return HttpResponse("You Are Looking in Result of student ::%s"%student_id)
+    stud=get_object_or_404(Student,pk=student_id)
+    return HttpResponse(render(request,'myapp/result.html',{'stud':stud}))
+
+
 def contact(request,student_id):
-    return HttpResponse("You Are Contact In Student::%s"%student_id)
+    s=get_object_or_404(Student,pk=student_id)
+    try:
+        #Create Contact objects
+        contact_info1=s.contact_set.get(pk=request.POST['cid1'])
+        contact_info2=s.contact_set.get(pk=request.POST['cid2'])
+        contact_info3=s.contact_set.get(pk=request.POST['cid3'])
+        #assign New Student Contact No to each Contact
+        contact_info1.stdno=request.POST['cno1']
+        contact_info2.stdno=request.POST['cno2']
+        contact_info3.stdno=request.POST['cno3']
+    except (ValueError,Contact.DoesNotExist):
+        return(render(request,'myapp/detail.html',{'error_message':'Error In Updating Contact No','stud':s}))
+    else:
+        #Update The New Value Of Contact Model
+        contact_info1.save()
+        contact_info2.save()
+        contact_info3.save()
+         # Always return an HttpResponseRedirect after successfully dealing
+        # with POST data. This prevents data from being posted twice if a
+        # user hits the Back button.
+        return HttpResponseRedirect(reverse('myappWithGenView:resultview',args=(s.id,)))#the reverse() call from django.core.urlresolvers
+
+
+
+
