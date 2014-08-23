@@ -47,7 +47,8 @@ def contact(request,student_id):
          # Always return an HttpResponseRedirect after successfully dealing
         # with POST data. This prevents data from being posted twice if a
         # user hits the Back button.
-        return HttpResponseRedirect(reverse('myappWithGenView:resultview',args=(s.id,)))#the reverse() call from django.core.urlresolvers
+        return HttpResponseRedirect(reverse('myappWithGenView:resultview',args=(s.id,)))
+        #the reverse() call from django.core.urlresolvers
 
 
 

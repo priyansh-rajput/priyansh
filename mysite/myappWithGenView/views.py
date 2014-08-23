@@ -8,7 +8,7 @@ from django.views import generic
 #the work of this views are same myapp's views But use Generic view
 #this views use models from myapp/models.py
 class IndexView(generic.ListView):
-    template_name = 'myapp/index.html'
+    template_name = 'myappWithGenView/index.html'
     context_object_name = "all_stud_list"
     def get_queryset(self):
         "Return All Student Records."
@@ -16,8 +16,8 @@ class IndexView(generic.ListView):
 class DetailView(generic.DetailView):
     model = Student#shorthand for queryset=Student.objects.all()
     context_object_name = 'stud'
-    template_name = 'myapp/detailForm.html'
+    template_name = 'myappWithGenView/detailForm.html'
 class ResultView(generic.DetailView):
     model = Student#shorthand for queryset=Student.objects.all()
     context_object_name = 'stud'
-    template_name = 'myapp/result.html'
+    template_name = 'myappWithGenView/result.html'
