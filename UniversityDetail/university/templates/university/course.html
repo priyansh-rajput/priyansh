@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <form action="{% url 'university:insertcourse' uni_id %}" method="post">
+         {% csrf_token %}{# protecting against Cross Site Request Forgeries In short, all POST forms that are targeted at internal URLs #}
+        <input type="text" name="cname">
+        <input type="submit" value="SAVE">
+    </form>
+</body>
+</html>

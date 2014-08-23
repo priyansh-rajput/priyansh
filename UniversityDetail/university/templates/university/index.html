@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<h2>{{ message }}</h2>
+<form action="{% url 'university:saverecord' %}" method="post">
+      {% csrf_token %}{# protecting against Cross Site Request Forgeries In short, all POST forms that are targeted at internal URLs #}
+    <table>
+        <tr>
+            <th>University Name</th>
+            <td><input type="text" name="uname" required></td>
+        </tr>
+        <tr>
+            <th>University Email ID</th>
+            <td><input type="text" name="emailid" required></td>
+        </tr>
+        <tr>
+            <th>University Website</th>
+            <td><input type="text" name="website"></td>
+        </tr>
+        <tr>
+            <th>University Address</th>
+            <td><textarea rows="5" cols="50" name="address" maxlength="199"></textarea></td>
+        </tr>
+        <tr>
+            <th>University Contact NO</th>
+            <td><input type="number" name="contact" required></td>
+        </tr>
+        <tr>
+
+            <td colspan="2" align="center"><input type="submit" value="SAVE"></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
