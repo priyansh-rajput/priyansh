@@ -2,7 +2,7 @@ from django.test import TestCase
 import datetime
 from django.utils import timezone
 from myapp.models import Student
-
+from django.core.urlresolvers import reverse
 # Create your tests here.
 class StudentMethodTest(TestCase):
     #python manage.py test myapp looked for tests in the myapp application
@@ -22,3 +22,6 @@ class StudentMethodTest(TestCase):
         """was_join_recently() method return true from employee whose join date within last day """
         recent_student= Student(join_date=timezone.now()-datetime.timedelta(days=1))
         self.assertEqual(recent_student.was_join_recently(),True)
+
+
+

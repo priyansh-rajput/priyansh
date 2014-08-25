@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <form action="{% url 'employeeview:employeeLogin' %}" method="post">
+        {% csrf_token %}
+        <table style="background-color: cornsilk;height: 300px;width: 300px;border: 1;border-style: dotted  " >
+            {% if errorMessage %}
+                <tr>
+                    <th colspan="2">{{ errorMessage }}</th>
+                </tr>
+            {% endif %}
+            <tr>
+                <th colspan="2">Login Here!</th>
+            </tr>
+            <tr>
+                <th>Email ID</th>
+                <td align="center"><input type="email" name="emailid" required></td>
+            </tr>
+            <tr>
+                <th>Password</th>
+                <td align="center"><input type="password" name="password" required></td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center"><input type="submit" value="Login"> <input type="reset"></td>
+            </tr>
+            <tr>
+                <td align="center" colspan="2"><a href="{% url 'employeeview:registration' %}"><strong style="color: cornflowerblue">New Employee?</strong></a>&nbsp;&nbsp;&nbsp;<a href="{% url 'employeeview:moveforgotPassword' %}"><strong style="color: cornflowerblue">Forgot Password?</strong></a></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>

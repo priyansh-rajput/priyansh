@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <form action="{% url 'employeeview:employeeInsert' %}" method="post">
+        {% csrf_token %}
+
+    <table align="right" border="1" style="background-color: beige;height: 400px;width: 400px">
+        <tr>
+            <th colspan="2">Registration here!</th>
+
+        </tr>
+        <tr>
+            <th>Full Name</th>
+            <td align="Center"><input type="text" name="ename" required></td>
+        </tr>
+        <tr>
+            <th align="center">Department</th>
+            <td align="left">
+                    {% if dept_list %}
+                    {% for dept in dept_list %}
+                        <input type="radio" name="dept" value="{{ dept.id }}" required>{{ dept.dname }}<br/>
+                    {% endfor %}
+                    {% else %}
+                        <input type="text" value="Not">
+                    {% endif %}
+            </td>
+        </tr>
+        <tr>
+            <th>Email ID</th>
+            <td align="center"><input type="email" name="emailid" required></td>
+        </tr>
+        <tr>
+            <th>Password</th>
+            <td align="center"><input type="password" name="password" required></td>
+        </tr>
+        <tr>
+            <th>Conform Password</th>
+            <td align="center"><input type="password" name="cpass" required></td>
+        </tr>
+        <tr>
+            <th>Mobile NO</th>
+            <td align="center"><input type="number" name="mobno" required></td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center"><input type="submit" value="Register"><input type="reset" value="Reset"></td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center"><a href="{% url 'employeeview:moveLogin' %}"><strong style="color: cornflowerblue">If Registered?</strong></a></td>
+        </tr>
+    </table>
+ </form>
+</body>
+</html>
